@@ -20,12 +20,12 @@ export class AuthService {
     ) { }
 
  generateToken(
-  userId: number,
+  user: any,
   expiresIn: number | string, // e.g. 900 or '15m'
   type: 'access' | 'refresh',
 ): string {
   const payload = {
-    sub: userId.toString(), // convert to string
+    sub: user, // convert to string
     type,
   };
 
@@ -74,14 +74,14 @@ export class AuthService {
     async generateAuthTokens(user: any) {
         const accessTokenExpires = moment().add(this.configService.jwt.expiresIn); // using jwt config
         const accessToken = this.generateToken(
-            user.id,
+            user,
             this.configService.jwt.expiresIn,
             tokenTypes.ACCESS,
         );
 
         const refreshTokenExpires = moment().add('7d'); // example refresh expiry
         const refreshToken = this.generateToken(
-            user.id,
+            user,
             '7d',
             tokenTypes.REFRESH,
         );

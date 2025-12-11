@@ -8,6 +8,8 @@ import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
 import { TokenModule } from './token/token.module';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { ContestModule } from './contest/contest.module';
+import { ParticipationModule } from './participation/participation.module';
 
 @Module({
   imports: [
@@ -47,6 +49,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
         },
       ],
     }),
+    ContestModule,
+    ParticipationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
